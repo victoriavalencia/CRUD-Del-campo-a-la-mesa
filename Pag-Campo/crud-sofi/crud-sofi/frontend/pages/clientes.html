@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Listado Clientes</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="../../../../css/style.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="../../../../img/favicon.ico" type="image/x-icon">
+
+</head>
+<body>
+
+    <nav class="navbar"> 
+        <ul class="navbar-items">
+          <li class="navbar-titulos"><a href="../../../../index.html">Inicio</a></li>
+          <li class="navbar-titulos"><a href="../../../../pages/nosotros.html">Nosotros</a></li>
+          <li class="navbar-titulos"><a href="../../../../pages/bolsones.html"> Bolsones</a></li>
+          <li class="navbar-titulos"><a href="../../../../pages/preguntas.html">Preguntas frecuentes</a></li>
+          <li class="navbar-titulos"><a href="../../../../pages/administrador.html">Administrador</a></li>      
+        </ul>
+      </nav>
+
+    <header id="header">
+
+        <h1 id="header_administracion">Listado de clientes</h1>
+
+    </header>
+
+
+
+    <main>
+        <div id="app" class="container">
+            <!-- <h1>Clientes</h1> lo voy a pasar al header para que quede con imagen de fondo --> 
+            <br>
+            <a href="cliente_nuevo.html"><button type="button" class="boton-crud">Nuevo Cliente</button></a>
+            <br><br>
+            <div v-if="error">
+                <p>Lo sentimos , ........</p>
+        </div>
+        <div v-else>
+            <section v-if="cargando">
+                 <div class="spinner-border"></div>
+                 <p>Cargando .....</p>
+            </section>
+             <section v-else>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Apellido</th>
+                                <th scope="col">Teléfono</th>
+                                <th scope="col">Localidad</th>
+                                <th scope="col">Dirección</th>
+                                <th scope="col">Bolsón</th>
+                                <th scope="col">Medio de Pago</th>
+                                <th scope="col">Día de Entrega</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class=""  v-for="cliente in clientes">
+                                <td scope="row">{{cliente.id}}</td>
+                                <td>{{cliente.nombre}}</td>
+                                <td>{{cliente.apellido}}</td>
+                                <td>{{cliente.telefono}}</td>
+                                <td>{{cliente.localidad}}</td>
+                                <td>{{cliente.direccion}}</td>
+                                <td>{{cliente.bolson}}</td>
+                                <td>{{cliente.medio_de_pago}}</td>
+                                <td>{{cliente.dia_de_entrega}}</td>
+                                <td>
+                                    <a class="btn btn-primary" :href="'cliente_update.html?id='+ cliente.id">Editar</a>
+                                    <button type="button" class="btn btn-danger" v-on:click="eliminar(cliente.id)">Eliminar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+</main>
+    
+<footer>
+<!-- place footer here -->
+    </footer>
+<!-- Link de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+    <script src="../js/main.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script><!--Link de VUE-->
+    <script src="../js/clientes.js"></script>
+</body>
+</html>
